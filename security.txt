@@ -1,0 +1,4 @@
+# Optional file. Replace this template with a monitored security contact and real policy URL before publishing.
+# Contact: mailto:YOUR-MONITORED-SECURITY-EMAIL
+# Policy: https://saipranayenterprises.in/security-policy.html
+Preferred-Languages: en

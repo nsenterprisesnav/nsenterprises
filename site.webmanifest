@@ -1,0 +1,16 @@
+{
+  "name": "Sai Pranay Enterprises",
+  "short_name": "Sai Pranay",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#10263f",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
