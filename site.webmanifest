@@ -1,13 +1,13 @@
 {
-  "name": "Sai Pranay Enterprises",
-  "short_name": "Sai Pranay",
+  "name": "Ns Enterprises",
+  "short_name": "Ns Enterprises",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#10263f",
   "icons": [
     {
-      "src": "/assets/favicon.svg",
+      "src": "/assets/ns-enterprises-logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

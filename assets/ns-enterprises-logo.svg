@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">NS Enterprises</title>
+  <defs>
+    <linearGradient id="logo-bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#183957"/>
+      <stop offset="1" stop-color="#0B1C31"/>
+    </linearGradient>
+    <linearGradient id="logo-roof" x1="12" y1="14" x2="52" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#48D5C0"/>
+      <stop offset="1" stop-color="#347BF0"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#logo-bg)"/>
+  <path d="M12 28 32 12l20 16" fill="none" stroke="url(#logo-roof)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17 47V29l14 18V29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M49 30h-8c-3 0-5 1.7-5 4.2s2 4.2 5 4.2h2.5c3.3 0 5.5 1.8 5.5 4.4S46.8 47 43.5 47H36" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="52" cy="49" r="3" fill="#48D5C0"/>
+</svg>
