@@ -306,7 +306,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     justify-content: flex-start;
     text-align: left;
   }
-  .main-nav.open { animation: mobile-nav-in .18s ease-out both; }
+  .main-nav.open { animation: mobile-nav-in .3s ease-out both; }
   .main-nav > a:not(.nav-call):not(.nav-cta) {
     display: flex;
     align-items: center;
@@ -444,9 +444,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .review-intro { max-width: 390px; margin: 0 0 4px; color: #60758b; font-size: 13px; line-height: 1.7; }
 .review-marquee { overflow: hidden; margin-top: 32px; }
 .review-marquee-track { display: flex; width: max-content; animation: review-marquee-scroll 38s linear infinite; }
-.review-marquee:hover .review-marquee-track, .review-marquee:focus .review-marquee-track { animation-play-state: paused; }
+/* Touch browsers can retain :hover after a swipe; pause only for a mouse or keyboard. */
+@media (hover: hover) and (pointer: fine) {
+  .review-marquee:hover .review-marquee-track { animation-play-state: paused; }
+}
+.review-marquee:focus-visible .review-marquee-track { animation-play-state: paused; }
 .review-grid { display: flex; flex: 0 0 auto; flex-wrap: nowrap; gap: 18px; width: max-content; margin: 0; padding: 0 9px; }
-.review-card { display: flex; flex: 0 0 clamp(280px, 30vw, 380px); min-height: 250px; flex-direction: column; padding: 25px; border: 1px solid #e0e8f2; border-radius: 12px; background: #fff; box-shadow: 0 8px 24px rgba(16, 38, 63, .055); transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease; }
+.review-card { display: flex; flex: 0 0 auto; width: clamp(280px, 30vw, 380px); min-width: 0; min-height: 250px; flex-direction: column; padding: 25px; border: 1px solid #e0e8f2; border-radius: 12px; background: #fff; box-shadow: 0 8px 24px rgba(16, 38, 63, .055); transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease; }
 .review-card:hover { transform: translateY(-4px); border-color: #cbdcf0; box-shadow: 0 16px 34px rgba(16, 38, 63, .1); }
 .review-card .stars { color: #efa72d; letter-spacing: 3px; font-size: 14px; }
 .review-card > p { flex: 1; min-height: 0; margin: 16px 0 22px; color: #3e536b; font-size: 15px; line-height: 1.75; }
@@ -468,11 +472,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .review-heading { display: block; margin-bottom: 24px; }
   .review-intro { margin-top: 14px; }
   .review-marquee { margin-top: 24px; }
+  /* Allow more reading time per card on narrow screens. */
+  .review-marquee-track { animation-duration: 76s; }
   .review-grid { gap: 14px; }
-  .review-card { flex-basis: min(82vw, 360px); }
+  .review-card { width: min(82vw, 360px); }
   .review-card { min-height: 0; padding: 22px; }
   .review-card > p { margin: 13px 0 19px; }
   .brand-marquee { margin-top: 22px; }
+  .brand-marquee-track { animation-duration: 54s; }
   .brand-list { gap: 9px; }
   .brand-list .brand-logo { width: 138px; height: 68px; padding: 8px 14px; }
   .brand-list .brand-logo img { width: 28px; height: 28px; }

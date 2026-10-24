@@ -39,33 +39,70 @@ test('dropdown and Google Maps validation', () => {
   for (const maps of ['javascript:alert(1)', 'https://google.com.evil.test/maps', 'not a URL']) assert.ok(booking.validate({...valid,maps}, '2030-10-22').maps);
 });
 test('formatted message and encoding preserve user values and Unicode', () => {
-  const v = {...valid, name:'Customer & Family', issue:'శబ్దం / noise? 50% #check\nSecond line', maps:'https://www.google.com/maps?q=A&B=2'};
+  const v = {...valid, name:'Customer & Family', issue:'శబ్దం / noise? 50% #check + literal %20\nSecond line', maps:'https://www.google.com/maps?q=A%20B&label=Home#pin'};
   const url = new URL(booking.whatsappUrl(v));
   assert.equal(url.hostname, 'wa.me');
   assert.equal(url.pathname, '/919493984204');
   assert.notEqual(url.pathname.slice(1), booking.normalizePhone(v.phone));
   const message = url.searchParams.get('text');
   assert.equal(message, booking.message(v));
+  assert.ok(!/\p{Extended_Pictographic}/u.test(message));
+  assert.ok(!message.includes("\uFFFD"));
+  assert.ok(!message.includes("\\*"));
   for (const value of Object.values(v)) assert.ok(message.includes(value));
-  assert.ok(message.startsWith('🚨 *NEW SERVICE REQUEST* 🚨\n\n━━━━━━━━━━━━━━━━━━'));
+  assert.ok(message.startsWith('*NEW SERVICE REQUEST*\n\n━━━━━━━━━━━━━━━━━━'));
+  assert.equal(booking.whatsappUrl(v), `https://wa.me/919493984204?text=${encodeURIComponent(message)}`);
   assert.ok(message.endsWith('Please contact the customer to confirm the service visit.'));
-  assert.ok(booking.message(valid).includes('🗺️ *Maps:* Not provided'));
+  assert.ok(booking.message(valid).includes('*Maps:* Not provided'));
   assert.equal([...url.searchParams].length, 1);
 });
 test('invalid destination configuration fails safely', () => {
   for (const phone of ['', '+919493984204', '91 9493984204', 'abc']) assert.throws(() => booking.whatsappUrl(valid, phone), /temporarily unavailable/);
 });
-test('every message emoji survives WhatsApp URL encoding without replacement characters', () => {
-  const decoded = new URL(booking.whatsappUrl(valid)).searchParams.get('text');
-  for (const icon of ['\u{1f6a8}', '\u{1f4e1}', '\u{1f527}', '\u{1f464}', '\u{1f4de}', '\u{1f4cd}', '\u{1f5fa}\ufe0f', '\u{1f7e1}', '\u{1f5d3}\ufe0f', '\u23f0']) {
-    assert.ok(decoded.includes(icon), `Missing emoji ${icon}`);
+test('missing optional fields preserve the complete formatted message after one decode', () => {
+  for (const missing of ['', undefined]) {
+    const values = {...valid, brand: missing, maps: missing};
+    const decoded = new URL(booking.whatsappUrl(values)).searchParams.get('text');
+    assert.equal(decoded, `*NEW SERVICE REQUEST*
+
+━━━━━━━━━━━━━━━━━━
+*Appliance:* Microwave
+*Issue:* Not heating & keypad shows #1
+Please inspect.
+━━━━━━━━━━━━━━━━━━
+
+*Customer:* Test Customer
+*Phone:* +91 98765 43210
+*Location:* Flat 4, Test Street
+*Maps:* Not provided
+*Brand:* Not provided
+
+━━━━━━━━━━━━━━━━━━
+*Preferred Date:* 2030-10-22
+*Preferred Time:* 8:30 AM – 11:00 AM
+
+Please contact the customer to confirm the service visit.`);
   }
-  assert.ok(!decoded.includes('\ufffd'));
-  assert.ok(decoded.includes('*NEW SERVICE REQUEST*'));
-  assert.ok(!decoded.includes('**'));
-  assert.ok(!decoded.includes('\\*'));
-  const source = fs.readFileSync(path.join(__dirname, '../assets/booking.js'), 'utf8');
-  assert.ok(/^[\x00-\x7f]*$/.test(source));
+});
+test('source files are valid UTF-8 and HTML declares the encoding', () => {
+  const root = path.join(__dirname, '..');
+  const decoder = new TextDecoder('utf-8', {fatal: true});
+  function check(directory) {
+    for (const entry of fs.readdirSync(directory, {withFileTypes: true})) {
+      if (entry.name.startsWith('.')) continue;
+      const file = path.join(directory, entry.name);
+      if (entry.isDirectory()) { check(file); continue; }
+      if (!/\.(?:html|js|cjs|css|json|webmanifest|xml|svg|txt|md)$/.test(file)) continue;
+      const source = decoder.decode(fs.readFileSync(file));
+      assert.ok(!source.includes('\ufffd'), `${file} contains replacement characters`);
+      assert.ok(!/\u00f0\u0178|\u00e2\u20ac|\u00ef\u00bf\u00bd/.test(source), `${file} contains mojibake`);
+      if (file.endsWith('.html')) {
+        assert.match(source, /<meta charset="UTF-8">/i);
+        if (source.includes('booking.js')) assert.match(source, /booking\.js\?v=6" charset="utf-8"/);
+      }
+    }
+  }
+  check(root);
 });
 test('WhatsApp redirection detaches opener and handles blockers', () => {
   const url = booking.whatsappUrl(valid);

@@ -1,6 +1,12 @@
 # Apache only. If your host uses Nginx, configure equivalent rules in its server configuration.
 Options -Indexes
 
+# Serve Unicode source text with the same encoding used by the booking template.
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+AddCharset UTF-8 .html .js .css .json .webmanifest .xml .svg .txt
+</IfModule>
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 

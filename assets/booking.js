@@ -32,7 +32,25 @@ const ServiceBooking = (() => {
     return errors;
   }
   function message(v) {
-    return `\u{1f6a8} *NEW SERVICE REQUEST* \u{1f6a8}\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u{1f4e1} *Appliance:* ${v.appliance}\n\u{1f527} *Issue:* ${v.issue}\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u{1f464} *Customer:* ${v.name}\n\u{1f4de} *Phone:* ${v.phone}\n\u{1f4cd} *Location:* ${v.address}\n\u{1f5fa}\ufe0f *Maps:* ${v.maps || "Not provided"}\n\u{1f7e1} *Brand:* ${v.brand || "Not provided"}\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u{1f5d3}\ufe0f *Preferred Date:* ${v.date}\n\u23f0 *Preferred Time:* ${v.time}\n\nPlease contact the customer to confirm the service visit.`;
+    // Keep this template as UTF-8 text; encode only the complete message in messageUrl.
+    return `*NEW SERVICE REQUEST*
+
+━━━━━━━━━━━━━━━━━━
+*Appliance:* ${v.appliance}
+*Issue:* ${v.issue}
+━━━━━━━━━━━━━━━━━━
+
+*Customer:* ${v.name}
+*Phone:* ${v.phone}
+*Location:* ${v.address}
+*Maps:* ${v.maps || "Not provided"}
+*Brand:* ${v.brand || "Not provided"}
+
+━━━━━━━━━━━━━━━━━━
+*Preferred Date:* ${v.date}
+*Preferred Time:* ${v.time}
+
+Please contact the customer to confirm the service visit.`;
   }
   function whatsappUrl(v, number = BUSINESS_WHATSAPP_NUMBER) {
     return messageUrl(message(v), number);
