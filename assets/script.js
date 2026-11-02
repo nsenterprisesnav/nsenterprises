@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".main-nav");
   if (toggle && nav) {
+    const fitNav = () => {
+      const available = window.innerHeight - document.querySelector('.nav-wrap').getBoundingClientRect().bottom - 24;
+      nav.style.setProperty('--menu-available-height', `${Math.max(0, available)}px`);
+    };
     const closeNav = () => {
       nav.classList.remove("open");
       toggle.classList.remove("is-open");
@@ -9,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       toggle.setAttribute("aria-label", "Open navigation");
     };
     toggle.addEventListener("click", () => {
+      fitNav();
       const isOpen = nav.classList.toggle("open");
       toggle.classList.toggle("is-open", isOpen);
       toggle.setAttribute("aria-expanded", String(isOpen));
@@ -25,15 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
     window.addEventListener("resize", () => {
+      fitNav();
       if (window.innerWidth > 1024 && nav.classList.contains("open")) closeNav();
     });
+    window.addEventListener("scroll", () => {
+      if (nav.classList.contains("open")) fitNav();
+    }, { passive: true });
     window.addEventListener("pageshow", closeNav);
 
     // Keep the highlighted navigation item in sync with the visible homepage section.
     const homeLink = [...nav.querySelectorAll("a")].find(link => !new URL(link.href, window.location.href).hash);
     const sectionLinks = [...nav.querySelectorAll('a[href*="#"]')]
       .map(link => ({ link, section: document.getElementById(new URL(link.href, window.location.href).hash.slice(1)) }))
-      .filter(item => item.section);
+      .filter(item => item.section?.matches('main section[id]'));
     if (sectionLinks.length) {
       const setActiveLink = activeLink => {
         nav.querySelectorAll("a.active").forEach(link => {
@@ -71,5 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
+
+  // The brand name remains readable when an external favicon is unavailable.
+  document.querySelectorAll('.brand-logo img').forEach(img => {
+    const hideFailedLogo = () => { img.hidden = true; };
+    img.addEventListener('error', hideFailedLogo);
+    if (img.complete && !img.naturalWidth) hideFailedLogo();
+  });
 
 });

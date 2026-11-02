@@ -14,6 +14,16 @@ A responsive, multi-page front-end recreation inspired by the publicly accessibl
 3. For best testing, use VS Code with the Live Server extension.
 4. Service pages are inside `services/`; article pages are inside `articles/`.
 
+## Responsive checks
+
+Run `node --test tests/booking.test.cjs tests/feedback.test.cjs` for form validation tests.
+Run `node tests/responsive-audit.cjs` with Playwright installed for the browser audit.
+If Playwright is installed outside this project, set `PLAYWRIGHT_MODULE` to its module path.
+Optionally set `CHROMIUM_PATH` to an existing Chromium executable.
+The audit checks all 11 pages at 15 widths from 320 to 1920 pixels, plus mobile and landscape menus, booking validation, feedback and FAQ interactions.
+External resources are blocked by default to test fallbacks; set `AUDIT_ONLINE=1` to enable them.
+Screenshots and the JSON report are saved in `tmp/responsive-audit/` (ignored by Git).
+
 ## Included
 - Responsive homepage
 - Six service detail pages

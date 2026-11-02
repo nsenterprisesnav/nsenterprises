@@ -98,7 +98,7 @@ test('source files are valid UTF-8 and HTML declares the encoding', () => {
       assert.ok(!/\u00f0\u0178|\u00e2\u20ac|\u00ef\u00bf\u00bd/.test(source), `${file} contains mojibake`);
       if (file.endsWith('.html')) {
         assert.match(source, /<meta charset="UTF-8">/i);
-        if (source.includes('booking.js')) assert.match(source, /booking\.js\?v=6" charset="utf-8"/);
+        if (source.includes('booking.js')) assert.match(source, /booking\.js\?v=\d+" charset="utf-8"/);
       }
     }
   }

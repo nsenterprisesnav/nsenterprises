@@ -2,7 +2,7 @@
 const BUSINESS_WHATSAPP_NUMBER = "919493984204";
 
 const ServiceBooking = (() => {
-  const appliances = ["AC", "Refrigerator", "Washing Machine", "Dishwasher", "Microwave", "Other"];
+  const appliances = ["Chimney", "Microwave", "Hob / Gas stove", "Induction stove", "Dishwasher", "Cooking range", "AC", "Refrigerator", "Washing Machine", "Other"];
   const brands = ["Samsung", "LG", "Whirlpool", "Bosch", "IFB", "Godrej", "Haier", "Voltas", "Daikin", "Blue Star", "Panasonic", "Faber", "Elica", "Glen", "Prestige", "Kent", "Aquaguard", "Other"];
   const slots = ["8:30 AM \u2013 11:00 AM", "11:00 AM \u2013 2:00 PM", "2:00 PM \u2013 5:00 PM", "5:00 PM \u2013 8:00 PM", "8:00 PM \u2013 10:15 PM"];
   function today(now = new Date()) {
@@ -109,7 +109,7 @@ Please contact the customer to confirm the service visit.`;
       }
       const service = existingForm?.dataset.service || trigger.dataset.service || document.querySelector(".booking-form")?.dataset.service;
       if (!form.elements.appliance.value && service) {
-        form.elements.appliance.value = appliances.find(type => type !== "Other" && service.toLowerCase().includes(type.toLowerCase())) || "Other";
+        form.elements.appliance.value = appliances.find(type => type !== "Other" && service.toLowerCase().includes(type.toLowerCase().split(' / ')[0])) || "Other";
         if (form.elements.appliance.value === "Other") form.elements.issue.placeholder = `Describe the problem with your ${service.toLowerCase()} appliance`;
       }
       if (!dialog.open) dialog.showModal();

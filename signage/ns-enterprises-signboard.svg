@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1273" width="4961" height="3508">
+  <!-- Shop signboard, 4961 x 3508 px (A4 landscape @ 300 DPI). Outline text before sending to print. -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&amp;family=Manrope:wght@700;800&amp;display=swap');
+      .h { font-family: Manrope, 'Segoe UI', Arial, sans-serif; font-weight: 800; }
+      .b { font-family: 'DM Sans', 'Segoe UI', Arial, sans-serif; }
+    </style>
+    <linearGradient id="logo-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#183957"/>
+      <stop offset="1" stop-color="#0B1C31"/>
+    </linearGradient>
+    <linearGradient id="logo-roof" x1="12" y1="14" x2="52" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#48D5C0"/>
+      <stop offset="1" stop-color="#347BF0"/>
+    </linearGradient>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#183957"/>
+      <stop offset="1" stop-color="#0C1D31"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#48D5C0"/>
+      <stop offset="1" stop-color="#2366E8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Frame -->
+  <rect width="1800" height="1273" fill="#0C1D31"/>
+  <rect x="30" y="30" width="1740" height="1213" fill="#FFFFFF"/>
+
+  <!-- Top panel: logo + name -->
+  <rect x="30" y="30" width="1740" height="740" fill="#F5F8FC"/>
+
+  <!-- Logo badge (from assets/ns-enterprises-logo.svg) -->
+  <g transform="translate(750 85) scale(4.6875)">
+    <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#logo-bg)"/>
+    <path d="M12 28 32 12l20 16" fill="none" stroke="url(#logo-roof)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17 47V29l14 18V29" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M49 30h-8c-3 0-5 1.7-5 4.2s2 4.2 5 4.2h2.5c3.3 0 5.5 1.8 5.5 4.4S46.8 47 43.5 47H36" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="52" cy="49" r="3" fill="#48D5C0"/>
+  </g>
+
+  <text x="900" y="527" text-anchor="middle" class="h" font-size="150" fill="#10263F" letter-spacing="-3">NS <tspan fill="#2366E8">ENTERPRISES</tspan></text>
+  <rect x="560" y="559" width="680" height="10" rx="5" fill="url(#accent)"/>
+  <text x="900" y="643" text-anchor="middle" class="b" font-weight="700" font-size="62" fill="#18283B">Home Appliance Repair &amp; Service</text>
+  <text x="900" y="711" text-anchor="middle" class="b" font-weight="500" font-size="38" fill="#52647A" letter-spacing="1">Chimney • Hob &amp; Gas Stove • Microwave • Dishwasher • Induction • Water Purifier</text>
+
+  <!-- Bottom band: phone + address -->
+  <rect x="30" y="770" width="1740" height="473" fill="url(#band)"/>
+  <rect x="30" y="770" width="1740" height="12" fill="url(#accent)"/>
+
+  <text x="900" y="918" text-anchor="middle" class="h" font-size="104" fill="#F3A64A" letter-spacing="2">Ph : <tspan fill="#FFFFFF">+91 94939 84204</tspan></text>
+  <text x="900" y="980" text-anchor="middle" class="b" font-weight="700" font-size="36" fill="#48D5C0" letter-spacing="6">CALL / WHATSAPP FOR DOORSTEP SERVICE</text>
+
+  <line x1="330" y1="1030" x2="1470" y2="1030" stroke="#FFFFFF" stroke-opacity=".2" stroke-width="2"/>
+
+  <text x="900" y="1096" text-anchor="middle" class="b" font-weight="700" font-size="50" fill="#FFFFFF">Plot No. 43, Paiga Housing Colony Road, S D Road,</text>
+  <text x="900" y="1164" text-anchor="middle" class="b" font-weight="700" font-size="50" fill="#FFFFFF">Secunderabad, Telangana – 500003</text>
+</svg>
