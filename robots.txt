@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://saipranayenterprises.in/sitemap.xml
+Sitemap: https://nsenterprices.in/sitemap.xml

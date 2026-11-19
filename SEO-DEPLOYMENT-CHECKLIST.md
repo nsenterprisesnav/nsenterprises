@@ -9,7 +9,7 @@
 - `.htaccess` for Apache hosting: HTTPS redirect, compression and browser caching (review host support before enabling).
 
 ## Before deployment — required
-1. **Confirm the domain:** This package uses `https://saipranayenterprises.in/` as the intended canonical domain. If you deploy on another domain or use `www`, update every canonical URL, sitemap URL, robots.txt sitemap line, schema URL and social URL consistently.
+1. **Confirm the domain:** This package uses `https://nsenterprices.in/` as the intended canonical domain. If you deploy on another domain or use `www`, update every canonical URL, sitemap URL, robots.txt sitemap line, schema URL and social URL consistently.
 2. **Verify business facts:** Confirm business name, phone, address, operating hours, service area, inspection price, years of experience, and every service/brand claim. The demo currently contains some sample/provisional claims and a phone number that must be checked.
 3. **Replace sample reviews:** Do not publish fabricated testimonials. Use authentic reviews only with permission. The sample review cards are not marked up as review structured data.
 4. **Images and rights:** Replace remote Unsplash images with genuine business/service images you own or have licensed. Compress them to WebP/AVIF where practical; give useful alt text.
@@ -19,7 +19,7 @@
 8. **HTTPS:** Configure a valid TLS certificate and redirect HTTP to the chosen HTTPS host. Confirm the site works with and without `www`, then redirect all variants to one preferred host.
 9. **Performance:** Run PageSpeed Insights for mobile and desktop. Resize images, reduce unused code, avoid layout shifts, and test on a real phone.
 10. **Accessibility/usability:** Check keyboard navigation, contrast, labels, alt text, heading order and tap target sizes.
-11. **Google Search Console:** Verify domain ownership, submit `https://saipranayenterprises.in/sitemap.xml`, inspect the homepage and key service pages, and monitor indexing/CWV/security reports.
+11. **Google Search Console:** Verify domain ownership, submit `https://nsenterprices.in/sitemap.xml`, inspect the homepage and key service pages, and monitor indexing/CWV/security reports.
 12. **Google Business Profile:** Claim/verify the legitimate profile if eligible. Keep name, address/phone, hours, service areas and website consistent. Do not create fake locations or keyword-stuff the business name.
 13. **Analytics:** Set up GA4 only if needed and disclose tracking appropriately. Track call/WhatsApp clicks without collecting unnecessary personal data.
 14. **Backups and security:** Keep a copy of the deployed files, update hosting credentials, and remove test forms/content.
