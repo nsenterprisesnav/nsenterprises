@@ -92,7 +92,7 @@ Please contact the customer to confirm the service visit.`;
       ${field("maps", "Google Maps Link", `<input ${attrs("maps")} type="url" maxlength="2000" placeholder="https://maps.app.goo.gl/\u2026">`)}
       ${field("date", "Preferred Date", `<input ${attrs("date", true)} type="date" min="${today()}">`, true)}
       ${field("time", "Preferred Time Slot", `<select ${attrs("time", true)}><option value="">Select preferred time</option>${options(slots)}</select>`, true)}
-      </div><p class="booking-submit-note">Visit charge: \u20b9350. Review and send your request in WhatsApp; the team will contact you to confirm the visit.</p><button class="btn btn-primary whatsapp-action" type="submit">Continue to WhatsApp</button><p class="booking-status" role="status" aria-live="polite"></p><a class="booking-fallback text-link" hidden target="_blank" rel="noopener noreferrer">Open your request in WhatsApp</a></form>`;
+      </div><p class="booking-submit-note">Visit charge: \u20b9350. Review and send your request in WhatsApp; the team will contact you to confirm the visit.</p><button class="btn btn-primary whatsapp-action" type="submit">Continue to WhatsApp</button><p class="booking-status" role="status" aria-live="polite"></p><a class="booking-fallback text-link" href="#service-booking-dialog" title="Open your request in WhatsApp" hidden target="_blank" rel="noopener noreferrer">Open your request in WhatsApp</a></form>`;
     document.body.append(dialog);
     const form = dialog.querySelector("form");
     const status = dialog.querySelector(".booking-status");
@@ -145,7 +145,7 @@ Please contact the customer to confirm the service visit.`;
       }
     }
     form.addEventListener("input", event => {
-      fallback.hidden = true; fallback.removeAttribute("href"); status.textContent = "";
+      fallback.hidden = true; fallback.href = "#service-booking-dialog"; status.textContent = "";
       if (event.target.getAttribute("aria-invalid") === "true") showErrors(validate(values()));
     });
     form.addEventListener("submit", event => {

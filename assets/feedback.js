@@ -32,7 +32,7 @@ const CustomerFeedback = (() => {
     form.addEventListener('input', event => {
       status.textContent = '';
       fallback.hidden = true;
-      fallback.removeAttribute('href');
+      fallback.href = '#feedback-dialog';
       const key = event.target.name;
       if (key && event.target.value.trim()) {
         event.target.removeAttribute('aria-invalid');
