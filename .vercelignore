@@ -1,0 +1,7 @@
+# Internal files that should not be public on the website
+*.md
+tests
+tmp
+security.txt
+assets/images/*.json
+assets/images/*-prompt.txt

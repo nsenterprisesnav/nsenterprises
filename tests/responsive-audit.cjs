@@ -7,9 +7,9 @@ const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'tmp', 'responsive-audit');
 fs.mkdirSync(out, {recursive:true});
-const pages = ['index.html', ...['services','articles'].flatMap(dir => fs.readdirSync(path.join(root,dir)).filter(f=>f.endsWith('.html')).map(f=>`${dir}/${f}`)), '404.html'];
+const pages = ['index.html', 'about.html', 'contact.html', 'privacy-policy.html', 'terms.html', ...['services','areas','articles'].flatMap(dir => fs.readdirSync(path.join(root,dir)).filter(f=>f.endsWith('.html')).map(f=>`${dir}/${f}`)), '404.html'];
 const widths = [320,360,390,440,600,760,768,820,960,1024,1025,1100,1280,1440,1920];
-const mime = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.png':'image/png','.svg':'image/svg+xml'};
+const mime = {'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg','.svg':'image/svg+xml'};
 const server = http.createServer((req,res)=>{
   const file = path.resolve(root, '.' + decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/\/$/,'/index.html'));
   if (!file.startsWith(root+path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) {res.writeHead(404);res.end();return;}

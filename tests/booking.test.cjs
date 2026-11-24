@@ -96,7 +96,7 @@ test('source files are valid UTF-8 and HTML declares the encoding', () => {
       const source = decoder.decode(fs.readFileSync(file));
       assert.ok(!source.includes('\ufffd'), `${file} contains replacement characters`);
       assert.ok(!/\u00f0\u0178|\u00e2\u20ac|\u00ef\u00bf\u00bd/.test(source), `${file} contains mojibake`);
-      if (file.endsWith('.html')) {
+      if (file.endsWith('.html') && !/google[0-9a-f]+\.html$/.test(file)) {
         assert.match(source, /<meta charset="UTF-8">/i);
         if (source.includes('booking.js')) assert.match(source, /booking\.js\?v=\d+" charset="utf-8"/);
       }

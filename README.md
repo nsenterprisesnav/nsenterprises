@@ -1,6 +1,6 @@
-# Sai Pranay Enterprises — HTML/CSS/JavaScript Clone
+# Ns Enterprises website
 
-A responsive, multi-page front-end recreation inspired by the publicly accessible Sai Pranay Enterprises website.
+Multi-page website for Ns Enterprises, kitchen appliance repair, Hyderabad (https://nsenterprices.in/).
 
 ## Stack
 - HTML5
@@ -20,14 +20,14 @@ Run `node --test tests/booking.test.cjs tests/feedback.test.cjs` for form valida
 Run `node tests/responsive-audit.cjs` with Playwright installed for the browser audit.
 If Playwright is installed outside this project, set `PLAYWRIGHT_MODULE` to its module path.
 Optionally set `CHROMIUM_PATH` to an existing Chromium executable.
-The audit checks all 11 pages at 15 widths from 320 to 1920 pixels, plus mobile and landscape menus, booking validation, feedback and FAQ interactions.
+The audit checks all HTML pages at 15 widths from 320 to 1920 pixels, plus mobile and landscape menus, booking validation, feedback and FAQ interactions.
 External resources are blocked by default to test fallbacks; set `AUDIT_ONLINE=1` to enable them.
 Screenshots and the JSON report are saved in `tmp/responsive-audit/` (ignored by Git).
 
 ## Included
 - Responsive homepage
-- Six service detail pages
-- Three appliance-care article pages
+- Nine service pages, seven area pages, about, contact and legal pages
+- Six appliance-care article pages
 - Responsive navigation menu
 - FAQ accordions
 - Call and WhatsApp links

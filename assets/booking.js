@@ -2,9 +2,9 @@
 const BUSINESS_WHATSAPP_NUMBER = "919493984204";
 
 const ServiceBooking = (() => {
-  const appliances = ["Chimney", "Microwave", "Hob / Gas stove", "Induction stove", "Dishwasher", "Cooking range", "AC", "Refrigerator", "Washing Machine", "Other"];
+  const appliances = ["Chimney", "Microwave", "Hob / Gas stove", "Induction stove", "Dishwasher", "Cooking range", "Water purifier", "AC", "Refrigerator", "Washing Machine", "Other"];
   const brands = ["Samsung", "LG", "Whirlpool", "Bosch", "IFB", "Godrej", "Haier", "Voltas", "Daikin", "Blue Star", "Panasonic", "Faber", "Elica", "Glen", "Prestige", "Kent", "Aquaguard", "Other"];
-  const slots = ["8:30 AM \u2013 11:00 AM", "11:00 AM \u2013 2:00 PM", "2:00 PM \u2013 5:00 PM", "5:00 PM \u2013 8:00 PM", "8:00 PM \u2013 10:15 PM"];
+  const slots = ["As soon as possible", "8:30 AM \u2013 11:00 AM", "11:00 AM \u2013 2:00 PM", "2:00 PM \u2013 5:00 PM", "5:00 PM \u2013 8:00 PM", "8:00 PM \u2013 10:15 PM", "10:15 PM \u2013 8:30 AM (night)"];
   function today(now = new Date()) {
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
   }
@@ -101,6 +101,9 @@ Please contact the customer to confirm the service visit.`;
     function open(trigger, existingForm) {
       opener = trigger;
       form.elements.date.min = today();
+      // Preselect the earliest visit so urgent customers have less to fill in.
+      if (!form.elements.date.value) form.elements.date.value = today();
+      if (!form.elements.time.value) form.elements.time.value = slots[0];
       if (existingForm) {
         const prior = new FormData(existingForm);
         for (const [target, source] of [["name", "name"], ["phone", "phone"], ["issue", "concern"]]) {
