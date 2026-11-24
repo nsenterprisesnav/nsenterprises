@@ -25,14 +25,14 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.nsenterprices.in"
         }
       ],
-      "destination": "https://nsenterprices.in/:path*",
+      "destination": "https://nsenterprices.in/$1",
       "permanent": true
     },
     {
