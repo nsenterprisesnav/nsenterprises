@@ -2,6 +2,4 @@
 *.md
 tests
 tmp
-security.txt
-assets/images/*.json
-assets/images/*-prompt.txt
+signage

@@ -72,7 +72,7 @@ const server = http.createServer((req,res)=>{
       }
       if(file==='index.html') {
         await page.evaluate(()=>window.scrollTo(0,0));
-        await page.waitForFunction(()=>document.querySelector('.main-nav .active')?.getAttribute('href')==='index.html');
+        await page.waitForFunction(()=>document.querySelector('.main-nav .active')?.getAttribute('href')==='./');
         await page.locator('#services').scrollIntoViewIfNeeded();
         await page.waitForFunction(()=>document.querySelector('.main-nav .active')?.getAttribute('href')==='#services');
         await page.locator('[data-open-review]').click();

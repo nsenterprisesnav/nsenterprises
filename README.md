@@ -1,53 +1,21 @@
 # Ns Enterprises website
 
-Multi-page website for Ns Enterprises, kitchen appliance repair, Hyderabad (https://nsenterprices.in/).
+Static website for Ns Enterprises, kitchen appliance repair, Hyderabad: https://nsenterprices.in/
 
-## Stack
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Optional PHP can be added later for server-side form processing; this version does not require PHP.
+Plain HTML, CSS and JavaScript. Vercel deploys the `main` branch.
+
+## Structure
+- `index.html`, `about.html`, `contact.html`, `privacy-policy.html`, `terms.html`, `404.html`
+- `services/`: nine service pages
+- `areas/`: seven area pages
+- `articles/`: six appliance-care articles
+- `assets/`: styles, scripts, images and social preview images (`og/`)
+- `sitemap.xml`, `robots.txt`, `vercel.json` and the Google verification file
+- `signage/`: shop signboard artwork (not published)
 
 ## Run locally
-1. Extract the ZIP.
-2. Open `index.html` in your browser.
-3. For best testing, use VS Code with the Live Server extension.
-4. Service pages are inside `services/`; article pages are inside `articles/`.
+Serve the folder, for example with VS Code Live Server, and open the root URL. Links use folder addresses, so opening the files directly will not navigate correctly.
 
-## Responsive checks
-
-Run `node --test tests/booking.test.cjs tests/feedback.test.cjs` for form validation tests.
-Run `node tests/responsive-audit.cjs` with Playwright installed for the browser audit.
-If Playwright is installed outside this project, set `PLAYWRIGHT_MODULE` to its module path.
-Optionally set `CHROMIUM_PATH` to an existing Chromium executable.
-The audit checks all HTML pages at 15 widths from 320 to 1920 pixels, plus mobile and landscape menus, booking validation, feedback and FAQ interactions.
-External resources are blocked by default to test fallbacks; set `AUDIT_ONLINE=1` to enable them.
-Screenshots and the JSON report are saved in `tmp/responsive-audit/` (ignored by Git).
-
-## Included
-- Responsive homepage
-- Nine service pages, seven area pages, about, contact and legal pages
-- Six appliance-care article pages
-- Responsive navigation menu
-- FAQ accordions
-- Call and WhatsApp links
-- Service request form that opens a prefilled WhatsApp message
-- Review form demo (does not store or publish reviews)
-- Map embed
-- Responsive mobile styles
-
-## Before publishing
-- Verify the business phone number, address, hours, pricing, claims and WhatsApp number.
-- Replace remote Unsplash images with owned/licensed images or assets supplied by the business.
-- Replace sample testimonials with real reviews used with permission.
-- Update the design after comparing against the live reference in desktop and mobile browsers.
-- If you need actual booking storage, email notifications, or an admin dashboard, add PHP endpoints and a database. Do not collect personal data without an appropriate privacy notice and secure handling.
-- The color palette and imagery are an implementation approximation, not extracted original source CSS/assets.
-
-## Suggested PHP extension (optional)
-A PHP backend is only needed if booking requests should be stored, emailed, or managed by an admin. Static call/WhatsApp actions work without PHP.
-"# testrepo" 
-"# testrepo" 
-"# testrepo" 
-"# nsenterprises" 
-"# nsenterprises" 
+## Checks
+- `node --test tests/booking.test.cjs tests/feedback.test.cjs`
+- `node tests/responsive-audit.cjs` (needs Playwright; set `PLAYWRIGHT_MODULE` and `CHROMIUM_PATH` if installed elsewhere)
